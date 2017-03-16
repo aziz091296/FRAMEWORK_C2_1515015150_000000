@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class BuatTableAnggota extends Migration
+class CreateTableDosen extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,15 @@ class BuatTableAnggota extends Migration
      */
     public function up()
     {
-        Schema::create('anggota',function(Blueprint $table)
-        {
+        Schema::create('dosen', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
-            $table->string('alamat');
+            $table->String('nama',50);
+            $table->String('nip',18);
+            $table->text('alamat');
+            $table->integer('pengguna_id',false,true);
+            $table->foreign('pengguna_id')->references('id')->on('pengguna');
             $table->timestamps();
+
         });
     }
 
@@ -28,6 +31,6 @@ class BuatTableAnggota extends Migration
      */
     public function down()
     {
-        Schema::drop('anggota');
+        Schema::drop('dosen');
     }
 }
