@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Ruangan extends Model
 {
     //
-    protected $table='Ruangan';
-    protected $fillable=['title'];
-    protected $guarded=['id'];
+    protected $table = 'ruangan';
+    protected $fillable = ['title'];
 
-   	public function JadwalMatakuliah()
-   	{
-   		# code...
-		return $this->hasMany(JadwalMatakuliah::class,'ruangan_id');   		
-   	}
+    public function jadwal_matakuliah()
+    {
+        return $this->hasMany(Jadwal_Matakuliah::class);
+    }
 }

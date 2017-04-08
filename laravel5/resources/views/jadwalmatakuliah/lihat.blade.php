@@ -1,33 +1,46 @@
 @extends('master')
 @section('container')
-<div class="panel panel-warning"> 
+<div class="panel panel-warning">
 	<div class="panel-heading">
-		<strong><a href="{{url('pengguna')}}">
-			<i style="color:#8a6d3b" class="fa text-default fa-chevron-left"></i></a>Detail Pengguna
-		</strong>
+		<strong><a href="{{ url('jadwal_matakuliah') }}"><i style+"color:#8a6d3b" class="fa text-default fa-chevron-left"></i></a> Detail Jadwal Mahasiswa</strong>		
 	</div>
 	<table class="table">
 		<tr>
-			<td>Username</td>
+			<td>Nama Mahasiswa</td>
 			<td>:</td>
-			<td>{{ $pengguna->username }}</td>
+			<td>{{ $jadwal_matakuliah->mahasiswa->nama }}</td>
 		</tr>
 		<tr>
-			<td>Password</td>
+			<td>NIM Mahasiswa</td>
 			<td>:</td>
-			<td>{{ $pengguna->password }}</td>
+			<td>{{ $jadwal_matakuliah->mahasiswa->nim }}</td>
 		</tr>
 		<tr>
-			<td class="col-xs-4">Dibuat Tanggal</td>
-			<td class="col-xs-4">:</td>
-			<td class="col-xs-4">{{$pengguna->created_at}}</td>
+			<td>Nama Dosen</td>
+			<td>:</td>
+			<td>{{ $jadwal_matakuliah->dosen_matakuliah->nip }}</td>
 		</tr>
 		<tr>
-			<td class="col-xs-4">Diperbarui Tanggal</td>
-			<td class="col-xs-4">:</td>
-			<td class="col-xs-4">{{$pengguna->updated_at}}</td>
+			<td>NIP Dosen</td>
+			<td>:</td>
+			<td>{{ $jadwal_matakuliah->dosen_matakuliah->dosen->nip }}</td>
 		</tr>
-		
+		<tr>
+			<td>Nama Matakuliah</td>
+			<td>:</td>
+			<td>{{ $jadwal_matakuliah->dosen_matakuliah->matakuliah->title }}</td>
+		</tr>
+
+		<tr>
+			<td class="col-xs-4">Dibuat tanggal</td>
+			<td class="col-cs-1">:</td>
+			<td>{{$jadwal_matakuliah->created_at}}</td>
+		</tr>
+		<tr>
+			<td class="col-xs-4">Diupdate tanggal</td>
+			<td class="col-cs-1">:</td>
+			<td>{{$jadwal_matakuliah->updated_at}}</td>
+		</tr>
 	</table>
 </div>
 @stop

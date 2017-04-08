@@ -1,36 +1,26 @@
 <?php
 
 namespace App;
- 
-use Illuminate\Database\Eloquent\Model;
-use App\mahasiswa;
-use App\Dosen;
-use App\peran;
 
+use Illuminate\Database\Eloquent\Model;
 
 class Pengguna extends Model
 {
-    protected $table='Pengguna'; 
-    protected $fillable=['username','password'];
-    protected $guarded=['id'];
+    //
+    protected $table = 'pengguna';
+    protected $fillable = ['username','password'];
 
-    public function mahasiswa(){
-    	return $this->hasOne(Mahasiswa::class,'pengguna_id');
+
+    public function mahasiswa() {
+        return $this->hasOne(Mahasiswa::class);
     }
-    /*public function mahasiswa(){
-        return $this->hasOne('App\Mahasiswa','pengguna_id');
-    }*/
-    
-    public function dosen()
-    {
-    	# code...
-    	return $this->hasOne(Dosen::class,'pengguna_id');
+
+    public function dosen() {
+        return $this->hasOne(Dosen::class);
     }
+
     public function peran()
     {
-    	# code...
-    	return $this->belongsToMany(Peran::class);
+        return $this->belongsToMany(Peran::class);
     }
-
 }
-

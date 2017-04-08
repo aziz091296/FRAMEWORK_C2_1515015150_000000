@@ -3,30 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Pengguna;
-use App\JadwalMatakuliah;
 
 class Mahasiswa extends Model
 {
-    protected $table='Mahasiswa';
-    protected $fillable=['nama','nim','alamat','pengguna_id'];
-    protected $guarded=['id'];
-    //$mahasiswa->Pengguna::find(1)->mahasiswa;
+    //
+    protected $table = 'mahasiswa';
+    protected $guarded = ['id'];
+    protected $fillable = ['nama', 'nim', 'alamat'];
 
-    public function Pengguna()
-    {
-    	# code...  
-    	return $this->belongsTo(Pengguna::class);
+    public function pengguna() {
+        return $this->belongsTo(Pengguna::class);
     }
-    /*public function Pengguna()
-    {
-        # code...
-        return $this->belongsTo('App\Pengguna');
-    }*/
 
-    public function JadwalMatakuliah()
-    {
-        # code...
-        return $this->hasMany(JadwalMatakuliah::class,'Mahasiswa_id');
+    public function jadwalmatakuliah() {
+        return $this->hasMany(Jadwal_matakuliah::class);
     }
+
+    public function getUsernameAttribute(){
+        return $this->pengguna->username;
+    }
+    
+    public function listMahasiswaDanNim()
+    {
+        $out = [];
+        foreach ($this->all() as $mhs) {
+            $out[$mhs->id] ="{$mhs->nama} ({$mhs->nim})";
+        }
+        return $out;
+    }
+
 }

@@ -3,19 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\DosenMatakuliah;
-class matakuliah extends Model
+
+class Matakuliah extends Model
 {
     //
-    protected $table='matakuliah';
-    protected $fillable=['title','keterangan'];
-    protected $guarded=['id'];
-    
- public function DosenMatakuliah()
- {
- 	# code...
- 	return $this->hasMany(DosenMatakuliah::class,'matakuliah_id');
- }
+    protected $table = 'matakuliah';
+    protected $fillable = ['title', 'keterangan'];
 
- 
+    public function dosen_matakuliah()
+    {
+    	return $this->hasMany(Dosen_Matakuliah::class);
+    }
 }
